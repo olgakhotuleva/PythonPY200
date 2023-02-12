@@ -41,10 +41,10 @@ class Product(object):
             raise TypeError
         if _pr < 0:
             raise ValueError
+        return True
 
     def __repr__(self):
-        return f"{self.__class__.__name__}(id={self.__id}, name='{self.__name}', " \
-               f"rating={self.__rating}), price={self.__price})"
+        return f"{self.__class__.__name__}(id={self.__id}, name='{self.__name}', rating={self.__rating}, price={self.__price})"
 
     def __str__(self):
-        return f"({self.__id}, {self.__name})"
+        return f"{self.__id}, {self.__name}"

@@ -21,5 +21,5 @@ def product_gen() -> Iterable[dict]:
     for _ in PRODUCTS:
         yield dict({
             "name": _,
-            "rating": next(gen_field_rating()),
-            "price": next(gen_field_price())})
+            "price": next(gen_field_price()),
+            "rating": next(gen_field_rating())})

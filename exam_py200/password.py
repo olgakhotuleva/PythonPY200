@@ -8,26 +8,28 @@
 
 import hashlib
 
+
 class Password:
 
-    def __init__(self):
-        self.psswd_checker = {}
+    #def __init__(self):
+        #self.psswd_checker = {}
 
-    def get_hash(self, _password):
+    @staticmethod
+    def get_hash_for_user( _password):
+        Password.__validate_password(_password)
 
-        self.validate_password(_password)
+        return hashlib.sha256(_password.encode()).hexdigest()
 
-        self.psswd_checker[_password] = hashlib.sha256(_password.encode()).hexdigest()
-
-        return self.psswd_checker[_password]
-
-    def _check_password(self, _password, _hash):
-        if self.psswd_checker.get(_password):
+    @staticmethod
+    def check_password(_password, _hash):
+        if hashlib.sha256(_password.encode()).hexdigest() == _hash:
             return True
         else:
             return False
-
-    def validate_password(self, _password):
+    @staticmethod
+    def __validate_password(_password):
+        if not isinstance(_password, str):
+            raise ValueError("")
         if len(_password) < 8:
             raise ValueError("")
         # TODO

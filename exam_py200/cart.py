@@ -11,19 +11,23 @@ class Cart:
 
     def add_product(self, _prod):
         if self._validate_product(_prod):
-            self.add_product(_prod)
+            self.products.append(_prod)
         else:
             # raise ValueError("Добавте продукт!")
             print("Добавте продукт!")
 
     def remove_product_by_name(self, _name):
-        for product in self.products:
-            if product.name == _name:
-                self.products.remove(product)
-                break
+        if _name == "all":
+            self.products.clear()
+
         else:
-            # raise ValueError("Продукт не найден в корзине")
-            print("Продукт не найден в корзине")
+            for product in self.products:
+                if product.name == _name:
+                    self.products.remove(product)
+                    break
+            else:
+                # raise ValueError("Продукт не найден в корзине")
+                print("Продукт не найден в корзине")
 
     @staticmethod
     def _validate_product(_prod):
@@ -35,4 +39,5 @@ class Cart:
             return True
 
     def __str__(self):
-        return f"Количество продуктов в корзне = {len(self.products)}"
+        return f"{[product.__str__() for product in self.products]}"
+
